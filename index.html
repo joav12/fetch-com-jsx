@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello World</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class PersonagensRickMorty extends React.Component{
+      constructor(props){
+        super(props);
+        this.state = {personagesRM: []}
+      }
+      
+      componentDidMount(){
+        fetch('https://rickandmortyapi.com/api/character/')
+          .then(res => res.json())
+          .then(res => {
+            this.setState({
+              personagesRM: res
+            });
+          });
+      }
+
+      render(){
+        let lista = <p>Carregando...</p>
+        if (this.state.personagesRM.length !== 0) {
+          console.log(this.state.personagesRM.results)
+          lista = (
+            <table class="table">
+              <tr class="table-header">
+                <td>Nome do personagem</td>
+                <td>Estatus</td>
+                <td>Raça</td>
+                <td>Foto</td>
+              </tr>
+
+              {this.state.personagesRM.results.map(item => (
+                <tr key={item.id} class={item.id % 2 == 0 ? 'table-row-even' : 'table-row-odd'}>
+                  <td>{item.name} </td>
+                  <td>{item.status == "Alive" ? "Vivo" : (item.status == "Dead" ? "Morto" : "Desconhecido")} </td>
+                  <td>{item.species == "Human" ? "Humano" : "Alien"} </td>
+                  <td><img src={item.image} alt={`Imagem do ${item.name}`}></img></td>
+                </tr>
+              ))}
+            </table>
+          )
+        }
+
+
+        return(
+          <div class="display-container">
+            <h1 class="title">Personagens de Rick and Morty</h1>
+            {lista}
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <PersonagensRickMorty />,
+      document.getElementById('root')
+    )
+  </script>
+</body>
+
+</html>

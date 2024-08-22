@@ -1,0 +1,38 @@
+.display-container{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('https://s2-techtudo.glbimg.com/WmHf3jIWbjOun5-q-YDkjkmuXtc=/0x0:1300x700/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2023/9/G/t7700wRdWvP6eEzMACAw/rick-e-morty-1.jpg');
+
+    .title{
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .table{
+        width: 90%;
+        margin: 0 auto;
+        border:1px solid #EEEEEE;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 14px;
+
+        .table-header{
+            background:#000;
+            color: #fff;
+            text-align: center;
+
+            td{ padding: 10px; }
+        }
+
+        .table-row-even, .table-row-odd{
+            td{ padding: 10px; }
+        }
+
+        .table-row-even{ background-color: #d1d1d1d1; }
+
+        .table-row-odd{ background-color: #fff; }
+    }
+
+}
